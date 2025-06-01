@@ -1,0 +1,150 @@
+# Space Economy Simulation Game
+
+## Overview
+A real-time space economy simulation game where players manage trade between planets with dynamic economies. The game features a complex economic system with production chains, commodity trading, and random events that impact planetary economies. This MVP will be implemented as a single-page web application running locally in a web browser. Trade happens when the player purchases commodities at one planet, flies to another planet, and sells them.
+
+## Core Features
+
+### Planetary System
+- Eight planets with unique characteristics and economies
+- Orbital mechanics and gravitational forces
+- Dynamic planet positions and velocities
+- Moon systems for select planets
+
+### Economic System
+- Complex production chains with input/output requirements
+- Dynamic commodity markets with supply/demand mechanics
+- Price fluctuations based on market conditions
+- Storage capacity management
+- Production and consumption rate modifiers
+
+### Event System
+- Random events affecting planetary economies
+- Multiple event categories:
+  - Environmental
+  - Economic
+  - Social/Political
+  - Technological
+- Configurable event frequency and impact
+- Event log tracking system
+
+### User Interface
+- Pause menu with game controls
+- Settings panel for event configuration
+- Real-time market data display
+- Event log viewer
+- Planet information display
+
+### Technical Implementation
+- Object-oriented design with Planet and Moon classes
+- Real-time simulation with time scaling
+- Event-driven architecture
+- UI system with interactive buttons and panels
+- Dynamic market price calculations
+- Production chain management
+- Error handling following industry best practices
+- Local browser-based execution
+
+## Game Mechanics
+
+### Economy
+- Planets have unique production capabilities
+- Commodities have base prices and dynamic market prices
+- Production requires input commodities
+- Storage capacity limits affect production
+- Distance affects energy unit prices
+
+### Events
+- Events can modify:
+  - Production rates
+  - Consumption rates
+  - Supply quantities
+  - Demand quantities
+- Event frequency is configurable
+- Multiple simultaneous events possible
+- Events can target specific commodities or all commodities
+
+### Trading
+- Buy/sell prices based on supply ratios
+- Price factors influenced by:
+  - Supply/demand balance
+  - Distance (for energy units)
+  - Market conditions
+- Minimum price margins maintained
+
+## Technical Details
+
+### Key Classes
+- `Planet`: Manages planet state, economy, and events
+- `Moon`: Handles moon orbit and rendering
+- UI Components: Various panels and buttons for interaction
+
+### Core Systems
+- Planet and star gravity
+- Spaceship size, mass, momentum, thrust force
+- Spaceship cargo capacity, upgrades
+- Market simulation, comodity pricing (sell, buy) variability and change over time
+- Event generation and management
+- Production chain processing - some comodity markets require other commodities to rise
+- Price calculation
+- UI rendering and interaction
+
+### Configuration Options
+- Event Settings
+  - Event frequency multipliers
+  - Maximum active events
+  - Type-specific event frequency
+- Time scaling
+- Key Bindings
+- UI layout and appearance
+
+### Development Scope
+- Single-player only
+- Local browser-based execution
+- No save/load functionality in MVP
+- No backend integration in MVP
+- Future considerations:
+  - User account management
+  - Backend integration
+  - Save/load functionality
+  - Multiplayer capabilities
+
+### Minimum Viable Product (MVP)
+
+#### Player Spaceship
+- Initial mass: 100 units
+- Starting location: Earth-like home planet
+- Movement capabilities:
+  - Surface traversal using left/right keys
+  - Orbital movement around planet circumference
+  - Spacebar for launch/thrust control
+    - Maximum 3 thrust bursts between planetary landings
+- Orientation: Always faces away from current planet's center
+
+#### Physics System
+- Launch mechanics:
+  - Initial trajectory determined by:
+    - Launch thrust force
+    - Ship momentum
+    - Ship mass
+  - Continuous influence from:
+    - Gravitational forces of nearby celestial bodies
+    - Current velocity and momentum
+
+#### Celestial Mechanics
+- Gravitational forces:
+  - Scale with celestial body size
+  - Stars: Significant but balanced gravitational influence
+  - Planets: Proportional to mass and distance
+- Orbital system:
+  - Simplified solar system simulation
+  - Planets orbit sun at varying distances
+  - Unique orbital speeds per planet
+  - Stable orbital mechanics
+
+### Error Handling
+- Standard try-catch blocks for runtime errors
+- Graceful degradation for performance issues
+- Clear user feedback for error states
+- Console logging for debugging
+- Input validation and sanitization
