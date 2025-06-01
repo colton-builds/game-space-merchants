@@ -3,31 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Merchants Game</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Phaser -->
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
-    
-    <!-- Matter.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
-    
-    <!-- Howler.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-    
-    <!-- Game Styles -->
+    <title>Space Merchants</title>
     <link rel="stylesheet" href="styles/main.css">
+    <!-- Phaser -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    <!-- Matter.js Physics Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/plugins/matter.min.js"></script>
 </head>
-<body class="bg-black text-white">
-    <div id="game-container" class="w-full h-screen"></div>
-    
-    <!-- Game Scripts -->
+<body>
+    <div id="game-container"></div>
+
+    <!-- Game Scenes -->
     <script src="src/game/scenes/BootScene.js"></script>
     <script src="src/game/scenes/PreloadScene.js"></script>
     <script src="src/game/scenes/MainMenuScene.js"></script>
     <script src="src/game/scenes/GameScene.js"></script>
+
+    <!-- Main Game -->
     <script src="src/game/main.js"></script>
+
+    <script>
+        // Initialize the game
+        window.onload = function() {
+            const config = {
+                type: Phaser.AUTO,
+                width: 800,
+                height: 600,
+                parent: 'game-container',
+                physics: {
+                    default: 'matter',
+                    matter: {
+                        gravity: { x: 0, y: 0 },
+                        debug: true
+                    }
+                },
+                scene: [BootScene, PreloadScene, MainMenuScene, GameScene]
+            };
+
+            const game = new Phaser.Game(config);
+        };
+    </script>
 </body>
 </html> 
