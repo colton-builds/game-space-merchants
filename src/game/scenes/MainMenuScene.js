@@ -4,6 +4,12 @@ class MainMenuScene extends Phaser.Scene {
     }
 
     create() {
+        // Play background music if not already playing
+        if (!this.sound.get('gameplay_music')) {
+            const music = this.sound.add('gameplay_music', { loop: true, volume: 0.5 });
+            music.play();
+        }
+
         // Create star animation
         this.anims.create({
             key: 'star_twinkle',

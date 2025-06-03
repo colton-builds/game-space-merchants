@@ -34,6 +34,7 @@ class PreloadScene extends Phaser.Scene {
         // Load audio
         this.load.audio('engine', 'assets/sounds/engine.mp3');
         this.load.audio('trade', 'assets/sounds/trade.mp3');
+        this.load.audio('gameplay_music', 'assets/sounds/gameplay_music.ogg');
     }
 
     create() {
