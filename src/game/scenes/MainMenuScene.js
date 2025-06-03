@@ -6,7 +6,7 @@ class MainMenuScene extends Phaser.Scene {
     create() {
         // Play background music if not already playing
         if (!this.sound.get('gameplay_music')) {
-            const music = this.sound.add('gameplay_music', { loop: true, volume: 0.5 });
+            const music = this.sound.add('gameplay_music', { loop: true, volume: 0.2 });
             music.play();
         }
 
@@ -21,18 +21,20 @@ class MainMenuScene extends Phaser.Scene {
                 { key: 'star_distant_5' },
                 { key: 'star_distant_6' }
             ],
-            frameRate: 8,
+            frameRate: 2,
             repeat: -1
         });
 
         // Create stars using the loaded images
         const totalStars = 50;
         const animatedStars = Math.floor(totalStars / 3);
+        const minScale = 0.05;
+        const maxScale = 0.19;
         
         for (let i = 0; i < totalStars; i++) {
             const x = Phaser.Math.Between(0, 800);
             const y = Phaser.Math.Between(0, 600);
-            const scale = Phaser.Math.FloatBetween(0.5, 1.5);
+            const scale = Phaser.Math.FloatBetween(minScale, maxScale);
             const alpha = Phaser.Math.FloatBetween(0.3, 1);
 
             if (i < animatedStars) {

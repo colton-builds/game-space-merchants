@@ -27,13 +27,8 @@ class PreloadScene extends Phaser.Scene {
 
     loadAssets() {
         // Load images
-        this.load.image('star', 'assets/images/star.png');
-        this.load.image('planet', 'assets/images/planet.png');
-        this.load.image('ship', 'assets/images/ship.png');
 
         // Load audio
-        this.load.audio('engine', 'assets/sounds/engine.mp3');
-        this.load.audio('trade', 'assets/sounds/trade.mp3');
         this.load.audio('gameplay_music', 'assets/sounds/gameplay_music.ogg');
     }
 
