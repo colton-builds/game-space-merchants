@@ -1,5 +1,3 @@
-import { STAR_SCALE_MIN, STAR_SCALE_MAX, STAR_COUNT } from '../constants.js';
-
 class MainMenuScene extends Phaser.Scene {
     constructor() {
         super('MainMenuScene');
@@ -28,13 +26,13 @@ class MainMenuScene extends Phaser.Scene {
         });
 
         // Create stars using the loaded images
-        const totalStars = STAR_COUNT;
+        const totalStars = window.STAR_COUNT;
         const animatedStars = Math.floor(totalStars / 3);
         
         for (let i = 0; i < totalStars; i++) {
             const x = Phaser.Math.Between(0, 800);
             const y = Phaser.Math.Between(0, 600);
-            const scale = Phaser.Math.FloatBetween(STAR_SCALE_MIN, STAR_SCALE_MAX);
+            const scale = Phaser.Math.FloatBetween(window.STAR_SCALE_MIN, window.STAR_SCALE_MAX);
             const alpha = Phaser.Math.FloatBetween(0.3, 1);
 
             if (i < animatedStars) {
