@@ -21,15 +21,15 @@ class MainMenuScene extends Phaser.Scene {
                 { key: 'star_distant_5' },
                 { key: 'star_distant_6' }
             ],
-            frameRate: 2,
+            frameRate: 1,
             repeat: -1
         });
 
         // Create stars using the loaded images
         const totalStars = 50;
         const animatedStars = Math.floor(totalStars / 3);
-        const minScale = 0.05;
-        const maxScale = 0.19;
+        const minScale = 0.01;
+        const maxScale = 0.1;
         
         for (let i = 0; i < totalStars; i++) {
             const x = Phaser.Math.Between(0, 800);

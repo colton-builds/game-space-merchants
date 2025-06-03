@@ -1,8 +1,8 @@
 // Game configuration
 const config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: window.innerWidth,
+    height: window.innerHeight,
     parent: 'game-container',
     physics: {
         default: 'matter',
@@ -15,4 +15,9 @@ const config = {
 };
 
 // Initialize the game
-const game = new Phaser.Game(config); 
+const game = new Phaser.Game(config);
+
+// Responsive resizing
+window.addEventListener('resize', () => {
+    game.scale.resize(window.innerWidth, window.innerHeight);
+}); 
