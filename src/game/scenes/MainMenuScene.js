@@ -4,13 +4,44 @@ class MainMenuScene extends Phaser.Scene {
     }
 
     create() {
-        // Create stars (same as loading screen)
-        for (let i = 0; i < 100; i++) {
+        // Create star animation
+        this.anims.create({
+            key: 'star_twinkle',
+            frames: [
+                { key: 'star_distant_1' },
+                { key: 'star_distant_2' },
+                { key: 'star_distant_3' },
+                { key: 'star_distant_4' },
+                { key: 'star_distant_5' },
+                { key: 'star_distant_6' }
+            ],
+            frameRate: 8,
+            repeat: -1
+        });
+
+        // Create stars using the loaded images
+        const totalStars = 50;
+        const animatedStars = Math.floor(totalStars / 3);
+        
+        for (let i = 0; i < totalStars; i++) {
             const x = Phaser.Math.Between(0, 800);
             const y = Phaser.Math.Between(0, 600);
-            const size = Phaser.Math.Between(1, 3);
-            const star = this.add.circle(x, y, size, 0xffffff);
-            star.alpha = Phaser.Math.FloatBetween(0.3, 1);
+            const scale = Phaser.Math.FloatBetween(0.5, 1.5);
+            const alpha = Phaser.Math.FloatBetween(0.3, 1);
+
+            if (i < animatedStars) {
+                // Create animated stars (1/3 of total)
+                const star = this.add.sprite(x, y, 'star_distant_1');
+                star.play('star_twinkle');
+                star.setAlpha(alpha);
+                star.setScale(scale);
+            } else {
+                // Create static stars (2/3 of total)
+                const starType = Phaser.Math.Between(1, 6);
+                const star = this.add.image(x, y, `star_distant_${starType}`);
+                star.setAlpha(alpha);
+                star.setScale(scale);
+            }
         }
 
         // Add title
