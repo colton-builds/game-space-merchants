@@ -3,41 +3,6 @@ class MenuButtonDemoScene extends Phaser.Scene {
         super('MenuButtonDemoScene');
     }
 
-    // Modular ASCII/Unicode icon creators
-    createInfoIcon(x, y) {
-        // Example: info icon using 'ⓘ' unicode
-        return this.add.text(x, y, 'ⓘ', {
-            fontFamily: 'Press Start 2P, monospace',
-            fontSize: '22px',
-            color: '#00eaff',
-            stroke: '#22223b',
-            strokeThickness: 4,
-            align: 'center'
-        }).setOrigin(0.5);
-    }
-    createSpeechBubbleIcon(x, y) {
-        // Example: speech bubble using unicode
-        return this.add.text(x, y, '💬', {
-            fontFamily: 'Press Start 2P, monospace',
-            fontSize: '22px',
-            color: '#ffb300',
-            stroke: '#22223b',
-            strokeThickness: 4,
-            align: 'center'
-        }).setOrigin(0.5);
-    }
-    createQuestionIcon(x, y) {
-        // Example: question mark in a box
-        return this.add.text(x, y, '[?]', {
-            fontFamily: 'Press Start 2P, monospace',
-            fontSize: '22px',
-            color: '#ff3c38',
-            stroke: '#22223b',
-            strokeThickness: 4,
-            align: 'center'
-        }).setOrigin(0.5);
-    }
-
     create() {
         const width = this.scale.width;
         const height = this.scale.height;
@@ -49,35 +14,6 @@ class MenuButtonDemoScene extends Phaser.Scene {
             .setStrokeStyle(6, 0x000000)
             .setOrigin(0.5)
             .setDepth(0);
-
-        // Title with info icon
-        this.createInfoIcon(leftPanelWidth / 2 - 60, 80);
-        this.add.text(leftPanelWidth / 2, 80, 'UI Elements Demo', {
-            fontFamily: 'Press Start 2P, monospace',
-            fontSize: '20px',
-            color: '#00eaff',
-            stroke: '#22223b',
-            strokeThickness: 6,
-            align: 'center',
-            shadow: { offsetX: 2, offsetY: 2, color: '#000', blur: 0, fill: true }
-        }).setOrigin(0.5);
-
-        // Description
-        this.add.text(leftPanelWidth / 2, 140, 'Demonstrates retro UI elements: button, slider, dropdown, toggles, dialog.', {
-            fontFamily: 'Press Start 2P, monospace',
-            fontSize: '16px',
-            color: '#f7f7f7',
-            wordWrap: { width: leftPanelWidth - 32 }
-        }).setOrigin(0.5);
-
-        // CTA with question icon
-        this.createQuestionIcon(leftPanelWidth / 2 - 60, 200);
-        this.add.text(leftPanelWidth / 2, 200, 'Interact with the elements on the right.', {
-            fontFamily: 'Press Start 2P, monospace',
-            fontSize: '16px',
-            color: '#ffb300',
-            wordWrap: { width: leftPanelWidth - 32 }
-        }).setOrigin(0.5);
 
         // Exit button (top left of left panel)
         const exitButton = this.add.text(32, 32, 'EXIT', {
@@ -101,12 +37,35 @@ class MenuButtonDemoScene extends Phaser.Scene {
         exitButton.on('pointerout', () => { exitButton.setStyle({ color: '#f7f7f7' }); });
         exitButton.on('pointerdown', () => { clickSound.play(); this.scene.start('SimulationsMenuScene'); });
 
+        // --- Left panel content ---
+        window.createInfoIcon(this, leftPanelWidth / 2 - 60, 80);
+        this.add.text(leftPanelWidth / 2, 80, 'UI Elements Demo', {
+            fontFamily: 'Press Start 2P, monospace',
+            fontSize: '20px',
+            color: '#00eaff',
+            stroke: '#22223b',
+            strokeThickness: 6,
+            align: 'center',
+            shadow: { offsetX: 2, offsetY: 2, color: '#000', blur: 0, fill: true }
+        }).setOrigin(0.5);
+        this.add.text(leftPanelWidth / 2, 140, 'Demonstrates retro UI elements: button, slider, dropdown, toggles, dialog.', {
+            fontFamily: 'Press Start 2P, monospace',
+            fontSize: '16px',
+            color: '#f7f7f7',
+            wordWrap: { width: leftPanelWidth - 32 }
+        }).setOrigin(0.5);
+        window.createQuestionIcon(this, leftPanelWidth / 2 - 60, 200);
+        this.add.text(leftPanelWidth / 2, 200, 'Interact with the elements on the right.', {
+            fontFamily: 'Press Start 2P, monospace',
+            fontSize: '16px',
+            color: '#ffb300',
+            wordWrap: { width: leftPanelWidth - 32 }
+        }).setOrigin(0.5);
+
         // --- Right panel UI elements ---
         const panelX = leftPanelWidth + rightPanelWidth / 2;
         let y = 140;
-
-        // Demo button with speech bubble icon
-        this.createSpeechBubbleIcon(panelX - 180, y);
+        window.createSpeechBubbleIcon(this, panelX - 180, y);
         const demoButton = this.add.text(panelX, y, 'RETRO BUTTON', {
             fontFamily: 'Press Start 2P, monospace',
             fontSize: '28px',
