@@ -4,6 +4,15 @@ class MainMenuScene extends Phaser.Scene {
     }
 
     create() {
+        // Create stars (same as loading screen)
+        for (let i = 0; i < 100; i++) {
+            const x = Phaser.Math.Between(0, 800);
+            const y = Phaser.Math.Between(0, 600);
+            const size = Phaser.Math.Between(1, 3);
+            const star = this.add.circle(x, y, size, 0xffffff);
+            star.alpha = Phaser.Math.FloatBetween(0.3, 1);
+        }
+
         // Add title
         this.add.text(400, 200, 'Space Merchants', {
             font: '48px Arial',

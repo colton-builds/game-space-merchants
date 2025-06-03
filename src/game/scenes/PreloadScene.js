@@ -4,30 +4,14 @@ class PreloadScene extends Phaser.Scene {
     }
 
     preload() {
-        // Display loading text
-        const loadingText = this.add.text(400, 300, 'Loading...', {
-            font: '24px Arial',
-            fill: '#ffffff'
-        }).setOrigin(0.5);
-
-        // Create loading bar
-        const progressBar = this.add.graphics();
-        const progressBox = this.add.graphics();
-        progressBox.fillStyle(0x222222, 0.8);
-        progressBox.fillRect(240, 270, 320, 50);
-
-        // Loading progress events
-        this.load.on('progress', (value) => {
-            progressBar.clear();
-            progressBar.fillStyle(0xffffff, 1);
-            progressBar.fillRect(250, 280, 300 * value, 30);
-        });
-
-        this.load.on('complete', () => {
-            progressBar.destroy();
-            progressBox.destroy();
-            loadingText.destroy();
-        });
+        // Create stars
+        for (let i = 0; i < 100; i++) {
+            const x = Phaser.Math.Between(0, 800);
+            const y = Phaser.Math.Between(0, 600);
+            const size = Phaser.Math.Between(1, 3);
+            const star = this.add.circle(x, y, size, 0xffffff);
+            star.alpha = Phaser.Math.FloatBetween(0.3, 1);
+        }
 
         // Load game assets
         this.loadAssets();
