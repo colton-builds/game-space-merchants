@@ -10,18 +10,36 @@ The UI for Space Merchant should evoke the look and feel of classic 16-bit arcad
 - **Borders/Outlines:** Use 1-2px solid black or white outlines for all UI elements
 
 ## Fonts
-- **Main Font:** Pixel/bitmap font (e.g., Press Start 2P, Arcade Classic, or custom 8x8/16x16 bitmap font)
-- **Font Size:** Use large, blocky text for titles; smaller, readable pixel text for menus and labels
+- **Main Font:** Bold, all-caps, pixel/bitmap font (e.g., Press Start 2P, Arcade Classic, or custom 8x8/16x16 bitmap font)
+- **Weight:** Heavy/bold, with thick strokes and a blocky, monospaced appearance
 - **Text Effects:** All-caps, drop shadows, and/or colored outlines for emphasis
+- **Decorative:** Use shadow or outline effects for extra pop on titles or important labels
 
-## Buttons & Panels
-- **Buttons:** Rectangular or pill-shaped with thick borders, pixelated edges, and color fill. Use hover/active states with color shifts or glow effects.
-- **Panels:** Opaque or semi-transparent with pixel borders, subtle scanline overlays, and drop shadows for depth
+## Dialog Windows & Panels
+- **Shape:** Rectangular with sharp, 90-degree corners
+- **Borders:** Thick, black, pixelated borders (1-2px), sometimes double or with a dotted pattern at the top for header bars
+- **Header Bar:** Many dialogs have a header bar with a different color or a dotted pattern, sometimes including a close (X) button or icon
+- **Shadow:** Each window has a drop shadow or dotted shadow, enhancing the "floating" effect
 - **Spacing:** Generous padding and clear separation between elements
+- **Playful Pixel Art:** Use simple, pixel-style icons (envelope, info, chat bubble, warning triangle, etc.) for context
+
+## Buttons
+- **Shape:** Rectangular, with sharp corners
+- **Borders:** Thick, black, pixelated borders, matching the dialog window style
+- **Background:** Solid fill, usually white or a very light pastel
+- **Text:** All-caps, bold, pixel/bitmap font, centered in the button
+- **Spacing:** Generous padding inside the button, making the text easy to read
+- **States:** Use simple color or border changes for hover/click interaction
 
 ## Iconography
 - **Icons:** Pixel art icons for settings, volume, arrows, etc. (16x16 or 32x32 px)
 - **Indicators:** Use blinking or animated pixel effects for notifications or active states
+
+## Iconography (ASCII/Unicode)
+- Use only ASCII/unicode character-based icons for basic UI elements (e.g., speech bubble, information "i", question mark, etc.).
+- Icons should be constructed by arranging unicode/text characters in formation, not by using Phaser's graphics API for circles or squares.
+- Icons must be modular and reusable across the app.
+- Use icons sparingly—only for essential UI cues and as relevant features emerge.
 
 ## Layout Principles
 - **Alignment:** Grid-based layout, left-aligned or center-aligned for menus
@@ -38,6 +56,9 @@ The UI for Space Merchant should evoke the look and feel of classic 16-bit arcad
 - **Button Click:** Play `buttonclick.wav` when a button is clicked
 
 (See also: Docs/ui-specs/settings-page.md for implementation details)
+
+## Simulation Page Navigation
+- The exit button for all simulation pages should be placed in the top left corner of the left-hand panel, ensuring consistency and aligning with modern UI design principles.
 
 ---
 All new UI components, including the settings menu, should follow these guidelines for a cohesive retro arcade experience. 
