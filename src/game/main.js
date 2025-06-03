@@ -11,7 +11,7 @@ const config = {
             debug: true // We'll disable this in production
         }
     },
-    scene: [BootScene, PreloadScene, MainMenuScene, SettingsScene, GameScene]
+    scene: [BootScene, PreloadScene, MainMenuScene, SettingsScene, SimulationsMenuScene, MenuButtonDemoScene, GameScene]
 };
 
 // Initialize the game

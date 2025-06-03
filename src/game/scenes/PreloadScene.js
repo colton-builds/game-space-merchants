@@ -22,7 +22,11 @@ class PreloadScene extends Phaser.Scene {
         }
 
         // Load other game assets
-        this.loadAssets();
+        this.loadAssets(
+            this.load.audio('buttonover', 'assets/sounds/buttonover.wav'),
+            this.load.audio('buttonclick', 'assets/sounds/buttonclick.wav'),
+            this.load.audio('click_low', 'assets/sounds/click_low.mp3'),
+        );
     }
 
     loadAssets() {

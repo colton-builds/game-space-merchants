@@ -95,6 +95,11 @@ class MainMenuScene extends Phaser.Scene {
             .setOrigin(0.5)
             .setInteractive();
 
+        // Simulations button
+        const simulationsButton = this.add.text(this.scale.width / 2, 440, 'SIMULATIONS', buttonStyle)
+            .setOrigin(0.5)
+            .setInteractive();
+
         // Button sounds
         const hoverSound = this.sound.add('buttonover');
         const clickSound = this.sound.add('buttonclick');
@@ -123,6 +128,19 @@ class MainMenuScene extends Phaser.Scene {
         settingsButton.on('pointerdown', () => {
             clickSound.play();
             this.scene.start('SettingsScene');
+        });
+
+        // Simulations button events
+        simulationsButton.on('pointerover', () => {
+            simulationsButton.setStyle({ color: '#00eaff' });
+            hoverSound.play();
+        });
+        simulationsButton.on('pointerout', () => {
+            simulationsButton.setStyle({ color: '#f7f7f7' });
+        });
+        simulationsButton.on('pointerdown', () => {
+            clickSound.play();
+            this.scene.start('SimulationsMenuScene');
         });
 
         // Version text
