@@ -1,3 +1,5 @@
+import { STAR_SCALE_MIN, STAR_SCALE_MAX, STAR_COUNT } from '../constants.js';
+
 class PreloadScene extends Phaser.Scene {
     constructor() {
         super('PreloadScene');
@@ -10,14 +12,14 @@ class PreloadScene extends Phaser.Scene {
         }
 
         // Create stars using the loaded images
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < STAR_COUNT; i++) {
             const x = Phaser.Math.Between(0, 800);
             const y = Phaser.Math.Between(0, 600);
             const starType = Phaser.Math.Between(1, 6);
             const star = this.add.image(x, y, `star_distant_${starType}`);
             star.setAlpha(Phaser.Math.FloatBetween(0.3, 1));
-            // Randomly scale the stars between 0.5 and 1.5
-            const scale = Phaser.Math.FloatBetween(0.5, 1.5);
+            // Use shared constants for scale
+            const scale = Phaser.Math.FloatBetween(STAR_SCALE_MIN, STAR_SCALE_MAX);
             star.setScale(scale);
         }
 

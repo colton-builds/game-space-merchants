@@ -1,3 +1,5 @@
+import { STAR_SCALE_MIN, STAR_SCALE_MAX, STAR_COUNT } from '../constants.js';
+
 class MainMenuScene extends Phaser.Scene {
     constructor() {
         super('MainMenuScene');
@@ -26,15 +28,13 @@ class MainMenuScene extends Phaser.Scene {
         });
 
         // Create stars using the loaded images
-        const totalStars = 50;
+        const totalStars = STAR_COUNT;
         const animatedStars = Math.floor(totalStars / 3);
-        const minScale = 0.01;
-        const maxScale = 0.1;
         
         for (let i = 0; i < totalStars; i++) {
             const x = Phaser.Math.Between(0, 800);
             const y = Phaser.Math.Between(0, 600);
-            const scale = Phaser.Math.FloatBetween(minScale, maxScale);
+            const scale = Phaser.Math.FloatBetween(STAR_SCALE_MIN, STAR_SCALE_MAX);
             const alpha = Phaser.Math.FloatBetween(0.3, 1);
 
             if (i < animatedStars) {
@@ -52,51 +52,87 @@ class MainMenuScene extends Phaser.Scene {
             }
         }
 
-        // Add title
-        this.add.text(400, 200, 'Space Merchants', {
-            font: '48px Arial',
-            fill: '#ffffff'
+        // Add retro pixel title
+        this.add.text(this.scale.width / 2, 120, 'SPACE MERCHANT', {
+            fontFamily: 'Press Start 2P, monospace',
+            fontSize: '32px',
+            color: '#00eaff',
+            stroke: '#22223b',
+            strokeThickness: 6,
+            align: 'center',
+            shadow: { offsetX: 2, offsetY: 2, color: '#000', blur: 0, fill: true }
         }).setOrigin(0.5);
 
         // Add subtitle
-        this.add.text(400, 260, 'Trade. Travel. Thrive.', {
-            font: '24px Arial',
-            fill: '#ffffff'
+        this.add.text(this.scale.width / 2, 180, 'TRADE. TRAVEL. THRIVE.', {
+            fontFamily: 'Press Start 2P, monospace',
+            fontSize: '16px',
+            color: '#ffb300',
+            stroke: '#22223b',
+            strokeThickness: 4,
+            align: 'center',
+            shadow: { offsetX: 1, offsetY: 1, color: '#000', blur: 0, fill: true }
         }).setOrigin(0.5);
 
-        // Create start button
-        const startButton = this.add.text(400, 400, 'Start Game', {
-            font: '32px Arial',
-            fill: '#ffffff',
-            backgroundColor: '#1a65ac',
-            padding: {
-                left: 20,
-                right: 20,
-                top: 10,
-                bottom: 10
-            }
-        })
-        .setOrigin(0.5)
-        .setInteractive();
+        // Retro pixel button style
+        const buttonStyle = {
+            fontFamily: 'Press Start 2P, monospace',
+            fontSize: '18px',
+            color: '#f7f7f7',
+            backgroundColor: '#22223b',
+            padding: { left: 32, right: 32, top: 12, bottom: 12 },
+            stroke: '#00eaff',
+            strokeThickness: 4,
+            align: 'center',
+            shadow: { offsetX: 1, offsetY: 1, color: '#000', blur: 0, fill: true }
+        };
 
-        // Button hover effects
+        // Start Game button
+        const startButton = this.add.text(this.scale.width / 2, 300, 'START GAME', buttonStyle)
+            .setOrigin(0.5)
+            .setInteractive();
+
+        // Settings button
+        const settingsButton = this.add.text(this.scale.width / 2, 370, 'SETTINGS', buttonStyle)
+            .setOrigin(0.5)
+            .setInteractive();
+
+        // Button sounds
+        const hoverSound = this.sound.add('buttonover');
+        const clickSound = this.sound.add('buttonclick');
+
+        // Start button events
         startButton.on('pointerover', () => {
-            startButton.setStyle({ fill: '#ff0' });
+            startButton.setStyle({ color: '#ff3c38' });
+            hoverSound.play();
         });
-
         startButton.on('pointerout', () => {
-            startButton.setStyle({ fill: '#ffffff' });
+            startButton.setStyle({ color: '#f7f7f7' });
         });
-
-        // Start game on click
         startButton.on('pointerdown', () => {
+            clickSound.play();
             this.scene.start('GameScene');
         });
 
-        // Add version text
-        this.add.text(400, 550, 'v0.1.0', {
-            font: '16px Arial',
-            fill: '#666666'
+        // Settings button events
+        settingsButton.on('pointerover', () => {
+            settingsButton.setStyle({ color: '#00e676' });
+            hoverSound.play();
+        });
+        settingsButton.on('pointerout', () => {
+            settingsButton.setStyle({ color: '#f7f7f7' });
+        });
+        settingsButton.on('pointerdown', () => {
+            clickSound.play();
+            this.scene.start('SettingsScene');
+        });
+
+        // Version text
+        this.add.text(this.scale.width / 2, this.scale.height - 40, 'v0.1.0', {
+            fontFamily: 'Press Start 2P, monospace',
+            fontSize: '12px',
+            color: '#666666',
+            align: 'center'
         }).setOrigin(0.5);
     }
 } 
